@@ -40,12 +40,20 @@ class RunTimeEnv {
             }
             else {
                 executor.execute() {
-                    try {
-                        while (lpu.isReady()) {
-                            lpu.run()
+                    while (lpu.isReady()) {
+                        // 确保同一个LPU不会同时被执行
+                        if(lpu.tryEntry()) {
+                            try {
+                                lpu.run()
+                            } catch (ex: Exception) {
+                                s_logger.error(printStackTrace(ex))
+                            }finally {
+                                lpu.leave()
+                            }
                         }
-                    } catch (ex: Exception) {
-                        s_logger.error(printStackTrace(ex))
+                        else{
+                            s_logger.warn("Multiple LPU enter trying detected!")
+                        }
                     }
                 }
             }

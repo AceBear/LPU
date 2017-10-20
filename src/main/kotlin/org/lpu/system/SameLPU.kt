@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory
  */
 open class SameLPU<T>: AnyLPU() {
     companion object {
-        val s_logger = LoggerFactory.getLogger(StartLPU::class.java)
+        val s_logger = LoggerFactory.getLogger(SameLPU::class.java)
     }
 
     val input = InPort<T>(this)

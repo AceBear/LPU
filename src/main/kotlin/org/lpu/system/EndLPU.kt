@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory
  */
 class EndLPU<T>() : AnyLPU() {
     companion object {
-        val s_logger = LoggerFactory.getLogger(StartLPU::class.java)
+        val s_logger = LoggerFactory.getLogger(EndLPU::class.java)
     }
 
     val input = InPort<T>(this)

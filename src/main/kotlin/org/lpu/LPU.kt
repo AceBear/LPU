@@ -1,12 +1,18 @@
 package org.lpu
 
 import org.lpu.vis.Visual
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * 逻辑处理单元
  * 有一组输入端口和一组输出端口
  */
 abstract class LPU : Visual() {
+    /**
+     * 正在运行标志位
+     */
+    private val isRunning = AtomicBoolean()
+
     protected val listInPorts = ArrayList<InPort<*>>()
     protected val listOutPorts = ArrayList<OutPort<*>>()
     /**
@@ -18,6 +24,20 @@ abstract class LPU : Visual() {
      * 是否可以被调度了
      */
     abstract fun isReady():Boolean
+
+    /**
+     * 尝试进行可执行状态
+     */
+    fun tryEntry():Boolean{
+        return isRunning.compareAndSet(false, true)
+    }
+
+    /**
+     * 退出可执行状态
+     */
+    fun leave(){
+        isRunning.set(false)
+    }
 }
 
 /**
