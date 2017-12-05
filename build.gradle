@@ -14,7 +14,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.1.+")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.+")
         classpath("org.junit.platform:junit-platform-gradle-plugin:1.0.+")
     }
 }
@@ -37,7 +37,7 @@ repositories {
 }
 
 dependencies {
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:1.1.+")
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:1.2.+")
     compile("org.springframework.boot:spring-boot-starter-log4j2:1.5.+")
 
     testCompile("org.junit.jupiter:junit-jupiter-api:5.0.+")
